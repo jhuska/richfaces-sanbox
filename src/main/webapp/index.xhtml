@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+			<h:form>
+				<rich:accordion switchType="client">
+					<rich:accordionItem header="Calendar">
+						<rich:calendar id="calendar" popup="false" />
+					</rich:accordionItem>
+
+					<rich:accordionItem header="hotKey and inputNumberSpinner">
+
+						<rich:calendar id="calendar2" popup="false" />
+
+					</rich:accordionItem>
+				</rich:accordion>
+				<rich:hotKey key="down" selector="#calendar2">
+					<rich:componentControl target="calendar2"
+						operation="showDateEditor" />
+				</rich:hotKey>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
