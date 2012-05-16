@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich">
 
 <body>
 	<ui:composition template="/templates/template.xhtml">
@@ -13,21 +13,56 @@
 
 		<ui:define name="body">
 			<h:form>
-				<rich:accordion switchType="client">
-					<rich:accordionItem header="Calendar">
-						<rich:calendar id="calendar" popup="false" />
-					</rich:accordionItem>
 
-					<rich:accordionItem header="hotKey and inputNumberSpinner">
+				<rich:tabPanel id="homeTabs" switchType="ajax" immediate="true"
+					activeItem="#{userBean.selectedTab}"
+					itemChangeListener="#{userBean.updateCurrent}">
 
-						<rich:calendar id="calendar2" popup="false" />
+					<rich:tab header="first" name="first">
+						<h:inputText label="Name" id="name" required="true"
+							value="#{userBean.name}">
+							<f:validateLength minimum="3" />
+						</h:inputText>
+						<rich:message for="name" ajaxRendered="true" />
+						<a4j:commandButton value="Ajax Validate" />
+					</rich:tab>
 
-					</rich:accordionItem>
-				</rich:accordion>
-				<rich:hotKey key="down" selector="#calendar2">
-					<rich:componentControl target="calendar2"
-						operation="showDateEditor" />
-				</rich:hotKey>
+					<rich:tab header="second" name="second">
+						<h:inputText value="#{userBean.name}">
+							<a4j:ajax event="keyup" render="out" />
+						</h:inputText>
+						<h:outputText value="#{userBean.name}" id="out" />
+					</rich:tab>
+
+					<rich:tab header="third" name="third">
+						<h:commandButton value="Call the popup">
+							<rich:componentControl target="popup" operation="show" />
+						</h:commandButton>
+						<rich:popupPanel id="popup" modal="false" autosized="true"
+							resizeable="false">
+							<f:facet name="header">
+								<h:outputText value="Simple popup panel" />
+							</f:facet>
+							<f:facet name="controls">
+								<h:outputLink value="#"
+									onclick="#{rich:component('popup')}.hide(); return false;">
+                					X
+            					</h:outputLink>
+							</f:facet>
+							<p>Any content might be inside this panel.</p>
+
+							<p>
+								The popup panel is open and closed from the javascript function
+								of component client side object. The following code <a href="#"
+									onclick="#{rich:component('popup')}.hide()">hide this panel</a>:
+								<f:verbatim>&#35;</f:verbatim>
+								{rich:component('popup')}.hide()
+							</p>
+						</rich:popupPanel>
+					</rich:tab>
+
+				</rich:tabPanel>
+
 			</h:form>
 		</ui:define>
 	</ui:composition>
