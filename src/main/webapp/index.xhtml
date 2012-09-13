@@ -14,7 +14,7 @@
 		<ui:define name="body">
 			<h:form>
 				<rich:dataTable value="#{carsBean.allInventoryItems}" var="car"
-					id="table" rows="5">
+					id="table" rows="10">
 
 					<rich:column filter="#{carsFilteringBean.mileageFilterImpl}">
 						<f:facet name="header">
