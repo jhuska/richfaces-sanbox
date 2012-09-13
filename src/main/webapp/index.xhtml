@@ -1,45 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:rich="http://richfaces.org/rich">
 
-<body>
-	<ui:composition template="/templates/template.xhtml">
-
-		<ui:define name="title">RichFaces Sample</ui:define>
-
-		<ui:define name="body">
-			<h:form>
-				<rich:dataTable value="#{carsBean.allInventoryItems}" var="car"
-					id="table" rows="10">
-
-					<rich:column filter="#{carsFilteringBean.mileageFilterImpl}">
-						<f:facet name="header">
-							<h:panelGroup>
-								<h:outputText value="Mileage &le; " />
-								<h:inputText value="#{carsFilteringBean.mileageFilter}">
-									<f:convertNumber groupingUsed="true" />
-									<f:validateLongRange maximum="500000" />
-									<a4j:ajax event="blur" render="table" execute="@this" />
-								</h:inputText>
-							</h:panelGroup>
-						</f:facet>
-						<rich:tooltip>${car.price}</rich:tooltip>
-						<h:outputText value="#{car.mileage}" />
-					</rich:column>
-
-					<rich:column>
-						<f:facet name="header">
-							<h:outputText value="Model" />
-						</f:facet>
-						<h:outputText value="#{car.model}" />
-					</rich:column>
-				</rich:dataTable>
-			</h:form>
-		</ui:define>
-	</ui:composition>
-</body>
+<h:head></h:head>
+<h:body>
+<h:form>
+            <h:commandLink value="Index" action="welcome" immediate="true" />
+			<rich:popupPanel >
+			</rich:popupPanel>
+</h:form>
+</h:body>
 </html>

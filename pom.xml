@@ -92,16 +92,6 @@
             <groupId>org.richfaces.core</groupId>
             <artifactId>richfaces-core-impl</artifactId>
         </dependency>
-<!--         <dependency> -->
-<!--             <groupId>javax.faces</groupId> -->
-<!--             <artifactId>javax.faces-api</artifactId> -->
-<!--             <scope>provided</scope> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>org.glassfish</groupId> -->
-<!--             <artifactId>javax.faces</artifactId> -->
-<!--             <scope>compile</scope> -->
-<!--         </dependency> -->
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-api</artifactId>
@@ -111,93 +101,93 @@
         <dependency>
             <groupId>org.apache.myfaces.core</groupId>
             <artifactId>myfaces-impl</artifactId>
-            <scope>runtime</scope>
+            <scope>compile</scope>
             <version>2.1.8</version>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl-api</artifactId>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>javax.servlet</groupId> -->
+<!--             <artifactId>javax.servlet-api</artifactId> -->
+<!--             <scope>provided</scope> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>javax.servlet.jsp</groupId> -->
+<!--             <artifactId>jsp-api</artifactId> -->
+<!--             <scope>provided</scope> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>javax.el</groupId> -->
+<!--             <artifactId>el-api</artifactId> -->
+<!--             <scope>provided</scope> -->
+<!--         </dependency> -->
+<!--         <dependency> -->
+<!--             <groupId>javax.servlet.jsp.jstl</groupId> -->
+<!--             <artifactId>jstl-api</artifactId> -->
+<!--         </dependency> -->
 
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>net.sf.ehcache</groupId> -->
+<!--             <artifactId>ehcache</artifactId> -->
+<!--         </dependency> -->
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>jee6</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <configuration>
-                            <webappDirectory>${project.build.directory}/${project.build.finalName}-jee6</webappDirectory>
-                            <classifier>jee6</classifier>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+<!--     <profiles> --> 
+<!--         <profile> -->
+<!--             <id>jee6</id> -->
+<!--             <build> -->
+<!--                 <plugins> -->
+<!--                     <plugin> -->
+<!--                         <artifactId>maven-war-plugin</artifactId> -->
+<!--                         <configuration> -->
+<!--                             <webappDirectory>${project.build.directory}/${project.build.finalName}-jee6</webappDirectory> -->
+<!--                             <classifier>jee6</classifier> -->
+<!--                         </configuration> -->
+<!--                     </plugin> -->
+<!--                 </plugins> -->
+<!--             </build> -->
 
-            <dependencies>
-                <dependency>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>javax.faces-api</artifactId>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>javax.faces</artifactId>
-                    <scope>provided</scope>
-                </dependency>
-                <dependency>
-                    <groupId>javax.transaction</groupId>
-                    <artifactId>jta</artifactId>
-                    <version>1.1</version>
-                    <scope>provided</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>jee6</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>war</goal>
-                                </goals>
-                                <configuration>
-                                    <webappDirectory>${project.build.directory}/${project.build.finalName}-jee6</webappDirectory>
-                                    <classifier>jee6</classifier>
-                                    <packagingExcludes>WEB-INF/lib/javax.faces*</packagingExcludes>
-                                    <warSourceExcludes>WEB-INF/lib/javax.faces*</warSourceExcludes>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+<!--             <dependencies> -->
+<!--                 <dependency> -->
+<!--                     <groupId>javax.faces</groupId> -->
+<!--                     <artifactId>javax.faces-api</artifactId> -->
+<!--                     <scope>provided</scope> -->
+<!--                 </dependency> -->
+<!--                 <dependency> -->
+<!--                     <groupId>org.glassfish</groupId> -->
+<!--                     <artifactId>javax.faces</artifactId> -->
+<!--                     <scope>provided</scope> -->
+<!--                 </dependency> -->
+<!--                 <dependency> -->
+<!--                     <groupId>javax.transaction</groupId> -->
+<!--                     <artifactId>jta</artifactId> -->
+<!--                     <version>1.1</version> -->
+<!--                     <scope>provided</scope> -->
+<!--                 </dependency> -->
+<!--             </dependencies> -->
+<!--         </profile> -->
+<!--         <profile> -->
+<!--             <id>release</id> -->
+<!--             <build> -->
+<!--                 <plugins> -->
+<!--                     <plugin> -->
+<!--                         <artifactId>maven-war-plugin</artifactId> -->
+<!--                         <executions> -->
+<!--                             <execution> -->
+<!--                                 <id>jee6</id> -->
+<!--                                 <phase>package</phase> -->
+<!--                                 <goals> -->
+<!--                                     <goal>war</goal> -->
+<!--                                 </goals> -->
+<!--                                 <configuration> -->
+<!--                                     <webappDirectory>${project.build.directory}/${project.build.finalName}-jee6</webappDirectory> -->
+<!--                                     <classifier>jee6</classifier> -->
+<!--                                     <packagingExcludes>WEB-INF/lib/javax.faces*</packagingExcludes> -->
+<!--                                     <warSourceExcludes>WEB-INF/lib/javax.faces*</warSourceExcludes> -->
+<!--                                 </configuration> -->
+<!--                             </execution> -->
+<!--                         </executions> -->
+<!--                     </plugin> -->
+<!--                 </plugins> -->
+<!--             </build> -->
+<!--         </profile> -->
+<!--     </profiles> -->
 </project>
