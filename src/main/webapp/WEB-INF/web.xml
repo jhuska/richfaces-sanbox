@@ -56,5 +56,23 @@
     <login-config>
         <auth-method>BASIC</auth-method>
     </login-config>
-
+    
+    <!-- Push Servlet - listens for user sessions -->
+    <servlet>
+        <servlet-name>Push Servlet</servlet-name>
+        <servlet-class>org.richfaces.webapp.PushServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Push Servlet</servlet-name>
+        <url-pattern>/__richfaces_push</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>org.richfaces.push.handlerMapping</param-name>
+        <param-value>/__richfaces_push</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.atmosphere.useBlocking</param-name>
+        <param-value>true</param-value>
+    </context-param>
 </web-app>
