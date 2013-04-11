@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich">
 
 <body>
 	<ui:composition template="/templates/template.xhtml">
@@ -13,21 +13,36 @@
 
 		<ui:define name="body">
 			<h:form>
-				<rich:accordion switchType="client">
-					<rich:accordionItem header="Calendar">
-						<rich:calendar id="calendar" popup="false" />
-					</rich:accordionItem>
-
-					<rich:accordionItem header="hotKey and inputNumberSpinner">
-
-						<rich:calendar id="calendar2" popup="false" />
-
-					</rich:accordionItem>
-				</rich:accordion>
-				<rich:hotKey key="down" selector="#calendar2">
-					<rich:componentControl target="calendar2"
-						operation="showDateEditor" />
-				</rich:hotKey>
+				<rich:dataTable value="#{myBean.departments}" var="department"
+					rows="2" id="table">
+					<f:facet name="header">
+						<rich:columnGroup>
+							<rich:column colspan="6">
+								<h:outputText value="First name" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="Surname" />
+							</rich:column>
+						</rich:columnGroup>
+					</f:facet>
+					<rich:column colspan="6">
+						<rich:collapsibleSubTableToggler for="sbtbl" />
+						<h:outputText value="#{department}" />
+					</rich:column>
+					<rich:collapsibleSubTable value="#{myBean.tableItems}" var="item"
+						id="sbtbl" expandMode="client" rows="5">
+						<rich:column>
+							<h:outputText value="#{item.name}" />
+						</rich:column>
+						<rich:column>
+							<h:outputText value="#{item.surname}" />
+						</rich:column>
+						<f:facet name="footer">
+							<rich:dataScroller/>
+						</f:facet>
+					</rich:collapsibleSubTable>
+				</rich:dataTable>
+				<rich:dataScroller for="table" />
 			</h:form>
 		</ui:define>
 	</ui:composition>
