@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich">
 
 <body>
 	<ui:composition template="/templates/template.xhtml">
@@ -13,21 +13,38 @@
 
 		<ui:define name="body">
 			<h:form>
-				<rich:accordion switchType="client">
-					<rich:accordionItem header="Calendar">
-						<rich:calendar id="calendar" popup="false" />
-					</rich:accordionItem>
+				<rich:panel style="width:133px">
+					<f:facet name="header">
+						<h:outputText value="Source List" />
+					</f:facet>
 
-					<rich:accordionItem header="hotKey and inputNumberSpinner">
+					<h:dataTable id="src" columns="1" value="#{dataBean.dragValues}"
+						var="foo">
+						<h:column>
+							<a4j:outputPanel layout="block">
+								<rich:dragSource type="#{foo.type}" dragValue="#{foo}" />
+								<h:outputText value="#{foo.value}"></h:outputText>
+							</a4j:outputPanel>
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
 
-						<rich:calendar id="calendar2" popup="false" />
+				<rich:panel styleClass="dropTargetPanel">
+					<f:facet name="header">
+						<h:outputText value="Some drop panel" />
+					</f:facet>
+					<rich:dropTarget acceptedTypes="#{dataBean.acceptedTypes}"
+						dropValue="Foo" dropListener="#{dropListenerBean.processDrop}"
+						render="table, src" />
 
-					</rich:accordionItem>
-				</rich:accordion>
-				<rich:hotKey key="down" selector="#calendar2">
-					<rich:componentControl target="calendar2"
-						operation="showDateEditor" />
-				</rich:hotKey>
+					<h:dataTable id="table" columns="1"
+						value="#{dataBean.dropValues}" var="foo">
+						<h:column>
+							<h:outputText value="#{foo.value}"></h:outputText>
+						</h:column>
+					</h:dataTable>
+				</rich:panel>
+
 			</h:form>
 		</ui:define>
 	</ui:composition>
