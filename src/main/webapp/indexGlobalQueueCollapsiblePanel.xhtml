@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:r="http://richfaces.org">
+	xmlns:r="http://richfaces.org">
 
 <body>
 	<ui:composition template="/templates/template.xhtml">
@@ -11,14 +11,20 @@
 		<ui:define name="title">RichFaces Sample</ui:define>
 
 		<ui:define name="body">
-			<h:form>
-				<h:inputText id="name" value="#{validationBean.name}" >
-					<r:validator event="blur"/>
-				</h:inputText>
-				<r:message for="name" />
-				<ui:debug rendered="true"/>
-				<r:log />
+			<!--  First way of killing the rich:tabPanel, add the global queue -->
+			<r:queue name="org.richfaces.queue.global" requestDelay="300"
+				ignoreDupResponce="true" />
+
+			<h:form id="tform">
+				<r:collapsiblePanel header="Overview" switchType="ajax">
+					<p>foo</p>
+				</r:collapsiblePanel>
+				<r:collapsiblePanel header="JSF 2 and RichFaces 4"
+					expanded="false" switchType="ajax">
+					<p>bar</p>
+				</r:collapsiblePanel>
 			</h:form>
+			<r:log />
 		</ui:define>
 	</ui:composition>
 </body>

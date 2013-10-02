@@ -7,7 +7,7 @@
 
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Production</param-value>
+        <param-value>Development</param-value>
     </context-param>
 
     <context-param>
@@ -18,7 +18,7 @@
     <!-- Resource Mapping - resources will be served compressed and packed in production -->
     <context-param>
         <param-name>org.richfaces.resourceOptimization.enabled</param-name>
-        <param-value>true</param-value>
+        <param-value>false</param-value>
     </context-param>
 
     <session-config>

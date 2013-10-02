@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:r="http://richfaces.org">
+
+<body>
+	<ui:composition template="/templates/template.xhtml">
+
+		<ui:define name="title">RichFaces Sample</ui:define>
+
+		<ui:define name="body">
+			<!--  First way of killing the rich:tabPanel, add the global queue -->
+			<r:queue name="org.richfaces.queue.global" requestDelay="300"
+				ignoreDupResponce="true" />
+
+			<h:form id="tform">
+				<r:tabPanel switchType="ajax" id="tabPanelLine2" status="STload">
+					<r:tab header="Tab1">
+						<r:commandButton status="STload" styleClass="button"
+							execute="@this" value="Test 1" action="#{testBean.action()}" />
+					</r:tab>
+					<r:tab header="Tab2">
+						<r:commandButton status="STload" styleClass="button"
+							execute="@this" value="Test 2" action="#{testBean.action()}" />
+					</r:tab>
+				</r:tabPanel>
+			</h:form>
+			<r:log />
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
