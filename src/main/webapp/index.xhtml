@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:r="http://richfaces.org">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <body>
 	<ui:composition template="/templates/template.xhtml">
@@ -11,13 +12,32 @@
 		<ui:define name="title">RichFaces Sample</ui:define>
 
 		<ui:define name="body">
-			<h:form>
-				<h:inputText id="name" value="#{validationBean.name}" >
-					<r:validator event="blur"/>
-				</h:inputText>
-				<r:message for="name" />
-				<ui:debug rendered="true"/>
-				<r:log />
+			<h:outputScript target="head">  
+            	function internalCallServer() {  
+                	console.log("calling server from client...");  
+                	callServer();  
+            	}
+            </h:outputScript>
+			<h:form prependId="true">
+
+				<h:outputLabel value="Host:" for="host" />
+				<h:inputText id="host" value="#{richBean.host}" />
+
+
+				<h:outputLabel value="Port:" for="port" />
+				<h:inputText id="port" value="#{richBean.port}" />
+
+				<rich:autocomplete id="docServerList" mode="client"
+					autocompleteList="#{richBean.suggestions}"
+					value="#{richBean.docServer}" showButton="true" minChars="0"
+					autofill="true" onfocus="internalCallServer()" />
+
+				<a4j:status startText="Loading list..." stopText="" />
+
+				<a4j:jsFunction name="callServer"
+					execute="@form"
+					actionListener="#{richBean.actionListener}" />
+
 			</h:form>
 		</ui:define>
 	</ui:composition>
