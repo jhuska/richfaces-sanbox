@@ -4,22 +4,21 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:r="http://richfaces.org">
-
-<body>
+<h:head></h:head>
+<h:body>
 	<ui:composition template="/templates/template.xhtml">
 
 		<ui:define name="title">RichFaces Sample</ui:define>
 
 		<ui:define name="body">
-			<h:form>
-				<h:inputText id="name" value="#{validationBean.name}" >
-					<r:validator event="blur"/>
-				</h:inputText>
-				<r:message for="name" />
-				<ui:debug rendered="true"/>
-				<r:log />
+			<h:form id="mojFormicek">
+			    <h:inputText id="userName">
+			      <f:validateLength maximum="255"/>
+			      <r:placeholder value="ID / Username"  />
+			    </h:inputText>
 			</h:form>
+			<r:commandButton onclick="document.getElementById('mojFormicek').reset();" value="reset"/>
 		</ui:define>
 	</ui:composition>
-</body>
+</h:body>
 </html>
