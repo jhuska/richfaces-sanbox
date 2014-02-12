@@ -3,7 +3,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:rich="http://richfaces.org/rich">
+      xmlns:r="http://richfaces.org">
     <h:head></h:head>
     <h:body>
         <ui:composition template="/templates/template.xhtml">
@@ -12,18 +12,18 @@
 
             <ui:define name="body">
                 <h:form>
-                    <rich:select  value="#{userBean.name}">
+                    <r:select  value="#{userBean.name}">
                         <f:selectItem itemValue="0" itemLabel="Option 1" />
                         <f:selectItem itemValue="1" itemLabel="Option 2" />
                         <f:selectItem itemValue="2" itemLabel="Option 3" />
                         <f:selectItem itemValue="3" itemLabel="Option 4" />
                         <f:selectItem itemValue="4" itemLabel="Option 5" />
-                        <rich:ajax event="keyup" render="out" />
-                    </rich:select>
+                        <r:ajax event="keyup" render="out" />
+                    </r:select>
                 </h:form>
-                <rich:outputPanel id="out">
+                <r:outputPanel id="out">
                     <h:outputText value="Hello #{userBean.name} !"/>
-                </rich:outputPanel>
+                </r:outputPanel>
             </ui:define>
         </ui:composition>
     </h:body>
