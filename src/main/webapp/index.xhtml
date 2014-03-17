@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:r="http://richfaces.org">
+	xmlns:r="http://richfaces.org">
 <h:head></h:head>
 <h:body>
 	<ui:composition template="/templates/template.xhtml">
@@ -11,13 +11,15 @@
 		<ui:define name="title">RichFaces Sample</ui:define>
 
 		<ui:define name="body">
-			<h:form id="mojFormicek">
-			    <h:inputText id="userName">
-			      <f:validateLength maximum="255"/>
-			      <r:placeholder value="ID / Username"  />
-			    </h:inputText>
+			<h:form id="someform">
+				<r:accordion>
+					<r:accordionItem header="Some header"
+						rightInactiveIcon="nonexistingone">
+					</r:accordionItem>
+					<r:accordionItem header="Another important header">
+					</r:accordionItem>
+				</r:accordion>
 			</h:form>
-			<r:commandButton onclick="document.getElementById('mojFormicek').reset();" value="reset"/>
 		</ui:define>
 	</ui:composition>
 </h:body>
