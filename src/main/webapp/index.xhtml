@@ -12,40 +12,7 @@
 		<ui:define name="title">RichFaces Sample</ui:define>
 
 		<ui:define name="body">
-			<h:form>
-				<rich:panel style="width:133px">
-					<f:facet name="header">
-						<h:outputText value="Source List" />
-					</f:facet>
-
-					<h:dataTable id="src" columns="1" value="#{dataBean.dragValues}"
-						var="foo">
-						<h:column>
-							<a4j:outputPanel layout="block">
-								<rich:dragSource type="#{foo.type}" dragValue="#{foo}" />
-								<h:outputText value="#{foo.value}"></h:outputText>
-							</a4j:outputPanel>
-						</h:column>
-					</h:dataTable>
-				</rich:panel>
-
-				<rich:panel styleClass="dropTargetPanel">
-					<f:facet name="header">
-						<h:outputText value="Some drop panel" />
-					</f:facet>
-					<rich:dropTarget acceptedTypes="#{dataBean.acceptedTypes}"
-						dropValue="Foo" dropListener="#{dropListenerBean.processDrop}"
-						render="table, src" />
-
-					<h:dataTable id="table" columns="1"
-						value="#{dataBean.dropValues}" var="foo">
-						<h:column>
-							<h:outputText value="#{foo.value}"></h:outputText>
-						</h:column>
-					</h:dataTable>
-				</rich:panel>
-
-			</h:form>
+		
 		</ui:define>
 	</ui:composition>
 </body>
