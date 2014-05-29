@@ -1,19 +1,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
 
-<body>
-	<ui:composition template="/templates/template.xhtml">
+    <body>
+        <ui:composition template="/templates/template.xhtml">
 
-		<ui:define name="title">RichFaces Sample</ui:define>
+            <ui:define name="title">RichFaces Sample</ui:define>
 
-		<ui:define name="body">
-		
-		</ui:define>
-	</ui:composition>
-</body>
+            <ui:define name="body">
+                <h:form id="testForm">  
+                    <rich:panel header="RF-13645 - contextMenu for extendedDataTable breaks after ajax render of contextMenu">
+                        <rich:tabPanel>  
+                            <rich:tab id="tab1" header="Tab 1">  
+                                <rich:extendedDataTable value="#{testBean.items}" var="beanVar" id="table1">  
+                                    <rich:column id="col1">                        <h:outputText value="#{beanVar}"/>  
+                                    </rich:column>  
+                                </rich:extendedDataTable>  
+                                <rich:contextMenu id="contextMenu1" target="table1">  
+                                    <rich:menuItem render="table1,contextMenu1" mode="ajax"  
+                                                   actionListener="#{testBean.addItem}">Context Menu 1 Item</rich:menuItem>  
+                                </rich:contextMenu>  
+                            </rich:tab>  
+                            <rich:tab id="tab2" header="Tab 2">  
+                                <rich:extendedDataTable value="#{testBean.items}" var="beanVar2" id="table2">  
+                                    <rich:column id="col2">  
+                                        <h:outputText value="#{beanVar2}"/>  
+                                    </rich:column>  
+                                </rich:extendedDataTable>  
+                                <rich:contextMenu id="contextMenu2" target="table2">  
+                                    <rich:menuItem mode="ajax" render="table2,contextMenu2" 
+                                                   actionListener="#{testBean.addItem}">Context Menu 2 Item</rich:menuItem>  
+                                </rich:contextMenu>  
+                            </rich:tab>
+                        </rich:tabPanel>
+                    </rich:panel>
+                </h:form>  
+                <h:form>
+                    <rich:panel header="RF-11973 - rich:contextMenu - after ajax re-render of table contextMenu no longer works">
+                        <rich:extendedDataTable value="#{testBean.items}" var="beanVar" id="table3">  
+                            <rich:column id="col3">                        <h:outputText value="#{beanVar}"/>  
+                            </rich:column>  
+                        </rich:extendedDataTable> .
+                        <a4j:commandButton value="push" render="table3" />
+                        <rich:contextMenu id="contextMenu3" target="table3" mode="ajax">  
+                            <rich:menuItem mode="ajax"
+                                           actionListener="#{testBean.justDoAnything}">Context Menu 3 Item</rich:menuItem>  
+                        </rich:contextMenu>
+                    </rich:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
 </html>
